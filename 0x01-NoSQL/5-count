@@ -1,1 +1,2 @@
-#!/usr/bin/env bash
+// display number of documents in a collection
+db.school.count()

@@ -1,1 +1,2 @@
-#!/usr/bin/env bash
+// deletes all documents matching the filter
+db.school.deleteMany({name: "Holberton school"})
