@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+db.school.insertOne({name:'Holberton school'})
