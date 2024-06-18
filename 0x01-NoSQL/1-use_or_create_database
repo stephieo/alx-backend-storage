@@ -1,2 +1,2 @@
-#!/usr/bin/env bash
+// switches to or creates a new database
 use my_db

@@ -1,2 +1,2 @@
-#!/usr/bin/env bash
+// lists all databases with daata
 show dbs
