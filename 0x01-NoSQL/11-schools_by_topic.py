@@ -8,4 +8,4 @@ def schools_by_topic(mongo_collection, topic):
         topic(string): topic to match
     """
     match_list = mongo_collection.find({"topics": topic})
-    for doc in match_list:
+    return match_list
