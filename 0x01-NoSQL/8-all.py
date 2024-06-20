@@ -1,4 +1,4 @@
- #!/usr/bin/env python3
+#!/usr/bin/env python3
 """function to list all documents in a collection"""
 
 if __name__ == "__main__":
@@ -6,7 +6,7 @@ if __name__ == "__main__":
         """ lists all documents in a collection"
         Args:
             mongo_collection: pymongo Collection object
-        
+
         Returns:
             list of all documents
         """

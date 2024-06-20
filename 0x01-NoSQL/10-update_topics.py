@@ -1,4 +1,4 @@
- #!/usr/bin/env python3
+#!/usr/bin/env python3
 """ function to update fields in a document """
 
 
@@ -10,5 +10,5 @@ if __name__ == "__main__":
             name(string): school name to update
             topics(list): list of topics approached in school
         """
-        mongo_collection.update_one({"name": name}, {"$set": {"topics": topics}})
-        
+        mongo_collection.update_one({"name": name},
+                                    {"$set": {"topics": topics}})
