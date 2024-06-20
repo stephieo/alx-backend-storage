@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+ #!/usr/bin/env python3
 """function to list all documents in a collection"""
 
 if __name__ == "__main__":

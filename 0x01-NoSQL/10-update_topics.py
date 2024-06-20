@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+ #!/usr/bin/env python3
 """ function to update fields in a document """
 
 

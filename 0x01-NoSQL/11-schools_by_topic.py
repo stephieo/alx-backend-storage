@@ -1,5 +1,5 @@
-#!/usr/bin/python3
-""" reads data from document """
+ #!/usr/bin/env python3
+ """ reads data from document """
 
     if __name__ == "__main__":
     def schools_by_topic(mongo_collection, topic):
