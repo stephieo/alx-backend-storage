@@ -2,11 +2,11 @@
 """  Redis excercise file"""
 import redis
 import uuid
-from typing import Union
+from typing import Union, Callable
 
 
 class Cache():
-    """ Defines a Cache class """
+    """ Defines a Cache class to interact with Redis """
     def __init__(self):
         """initialization"""
         self._redis = redis.Redis()
@@ -17,3 +17,29 @@ class Cache():
         key = str(uuid.uuid4())
         self._redis.set(key, data)
         return key
+
+    def get(self, key: str, fn: [Callable]):
+        """get method"""
+
+        if (fn is None):
+            value = self._redis.get(key)
+        elif (type(key) isinstance(str)):
+            value = self.get_str(key)
+        elif (type(key) isinstance(int)):
+            value = get_int(key)
+
+        if (value is None):
+            return None
+        else:
+            print(type(value))
+            return value
+
+    def get_str(self, key: str):
+        """convert byte string to UTF-8 string"""
+        value = self._redis.get(key).decode("utf-8")
+        return value
+
+    def get_int(self, key: int):
+        """convert byte string to integer"""
+        value = self._redis.get(key)
+        return (int.from_bytes(value))
