@@ -7,6 +7,10 @@ from functools import wraps
 
 
 def count_calls(method: Callable) -> Callable:
+    """
+    Decorator that counts the number of times
+    a method is called using Redis INCR.
+    """
     @wraps(method)
     def wrapper(seld, *args, **kwargs):
         redis_client = self._redis
@@ -17,16 +21,21 @@ def count_calls(method: Callable) -> Callable:
 
 
 def call_history(method: Callable) -> Callable:
+    """
+    Decorator that stores the history of
+    inputs and outputs of a method in Redis.
+    """
     @wraps(method)
     def wrapper(self, *args, **kwargs):
-        if isinstance(self._redis, redis.Redis)
-            input_key = f"{method.__qualname__}:inputs"
-            output_key = f"{method.__qualname__}:outputs"
+        if isinstance(self._redis, redis.Redis):
+            input_key = f"{method.__qualname__}: inputs"
+            output_key = f"{method.__qualname__}: outputs"
             self._redis.rpush(input_key, str(args))
             result = method(self, *args, **kwargs)
             self._redis.rpush(output_key, str(result))
         return result
     return wrapper
+
 
 class Cache():
     """ Defines a Cache class to interact with Redis """
