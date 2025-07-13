@@ -36,6 +36,32 @@ def call_history(method: Callable) -> Callable:
         return result
     return wrapper
 
+def replay(method: Callable) -> None:
+    """
+    Display the history of calls for a given method.
+    """
+    if method is None or not hasattr(method, '__self__'):
+        return
+    redis_client = method.__self__._redis
+    if isinstance(redis_client, redis.Redis):
+        method_name = method.__qualname__
+        input_key = f"{method_name}:inputs"
+        output_key = f"{method_name}:outputs"
+
+        count = redis_client.get(method_name)
+        count = int(count.decode('utf-8')) if count else 0
+
+        inputs = redis_client.lrange(input_key, 0, -1)
+        outputs = redis_client.lrange(output_key, 0, -1)
+
+        print(f"{method_name} was called {count} times:")
+
+        for input_args, output in zip(inputs, outputs):
+        # Decode bytes to string and format input as (*args,)
+        input_str = input_args.decode('utf-8')
+        print(f"{method_name}(*{input_str}) -> {output.decode('utf-8')}")
+
+    
 
 class Cache():
     """ Defines a Cache class to interact with Redis """
